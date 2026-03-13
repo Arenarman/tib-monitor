@@ -1,0 +1,25 @@
+name: TIB Monitor
+
+on:
+  schedule:
+    - cron: "*/5 * * * *"
+  workflow_dispatch:
+
+jobs:
+  run-bot:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Repo çek
+        uses: actions/checkout@v3
+
+      - name: Python kur
+        uses: actions/setup-python@v4
+        with:
+          python-version: "3.11"
+
+      - name: Kütüphaneleri kur
+        run: pip install -r requirements.txt
+
+      - name: Botu çalıştır
+        run: python tib_bot.py
